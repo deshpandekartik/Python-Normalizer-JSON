@@ -2,21 +2,29 @@
 
 class Database:
 	
-	directory = {}
+	directory = []	# a list of dicts
 	
-	def __init__(self) 
+	def __init__(self):
                 pass
 
 	def validate(self, input):
-		pass
+	
+		print input	
 
 	def add_to_database(self):
 		pass
 
-	def validate_and_add(self):
+	def extract(self,input):	
 		pass
 
+	def validate_and_add(self, input):
+		
+		if self.validate(input) != False:
+			self.add_to_database()
+			
+
+'''
 if __name__ == '__main__':
         db = Database()
         db.validate_and_add()
-
+'''

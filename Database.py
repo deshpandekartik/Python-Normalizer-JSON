@@ -9,7 +9,7 @@ class Database:
 	def __init__(self):
                 pass
 
-	# validate for format 1
+	# validate for format
 	def validate_format(self, field):
 		# Lastname, Firstname, (703)-742-0996, Blue, 10013
 
@@ -89,13 +89,21 @@ class Database:
 			# does not match any of the 3 formats
 			return False
 
-		return entry
+		print self.sortbyKeys(entry)
+		return self.sortbyKeys(entry)
+
+	def sortbyKeys(self, dict):
+
+		sortedD = {}
+		
+		for key in sorted(dict):
+			sortedD[key] = dict[key]
+
+		return sortedD
+		pass
 
 	def add_to_database(self, dict_entry):
 		self.directory.append(dict_entry)
-		pass
-
-	def extract(self,input):	
 		pass
 
 	def validate_and_add(self, input):

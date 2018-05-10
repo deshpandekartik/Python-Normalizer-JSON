@@ -36,7 +36,7 @@ class FileHandler:
                 json_dict["entries"] = self.db.directory
 		try:
 	                with open(self.resultfile, 'w') as fp:
-        	                json.dump(json_dict, fp, indent=4)
+        	                json.dump(json_dict, fp, indent=2)
 		except Exception as e:
                         print e
                         sys.exit(0)

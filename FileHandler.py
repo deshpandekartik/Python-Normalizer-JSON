@@ -2,13 +2,16 @@
 
 import sys
 from Database import Database
+import json
 
-class FileParser:
+class FileHandler:
 
 	filename = "input/data.in"	
+	resultfile = "result.json"
 	db = Database()
 
-	def __init__(self):
+	def __init__(self,database_obj):
+		self.db = database_obj
 		pass
 
 	# remove new line characters and trims the line
@@ -25,9 +28,22 @@ class FileParser:
 		except Exception as e:
 			print e
 			sys.exit(0)
+
 		pass	
 
-	
+	def jsonDump(self):
+		json_dict = {}
+                json_dict["entries"] = self.db.directory
+		try:
+	                with open(self.resultfile, 'w') as fp:
+        	                json.dump(json_dict, fp, indent=4)
+		except Exception as e:
+                        print e
+                        sys.exit(0)
+                pass
+
+'''
 if __name__ == '__main__':
-	reader = FileParser()
+	reader = FileHandler()
 	reader.read_File()		
+'''

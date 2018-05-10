@@ -13,7 +13,7 @@ class Database:
 	def validate_format(self, field):
 		# Lastname, Firstname, (703)-742-0996, Blue, 10013
 
-		# field_2 should be a phone number		
+		# field should be a phone number		
 		field = field.replace("-","")
 		field = field.replace(" ","")
 		field = field.replace("(","")
@@ -45,10 +45,13 @@ class Database:
 		field_5 = input[4].strip()
 
 		entry = {}
+
+		##########
+		# Format 1
 		if self.validate_format(field_3) == True:
 			# validate for format 1, filed_2 should be a mobile number
 	
-			if len(field_5) != 5:
+			if len(field_5) != 5 or not field_5.isdigit():
                                 return False
 
 			entry["color"] = field_4
@@ -58,10 +61,12 @@ class Database:
                         entry["zipcode"] = field_5
 
 			pass
+		##########
+                # Format 2
 		elif self.validate_format(field_5) == True:
 			# validate for format 2, filed_5 should be a mobile number
 
-			if len(field_4) != 5:
+			if len(field_4) != 5 or not field_4.isdigit():
 				return False
 
 
@@ -72,10 +77,12 @@ class Database:
                         entry["zipcode"] = field_4
 
 			pass
+		#########
+                # Format 3
 		elif self.validate_format(field_4) == True:
-			# validate for format 1, filed_4 should be a mobile number
+			# validate for format 3, filed_4 should be a mobile number
 
-			if len(field_5) != 5:
+			if len(field_3) != 5 or not field_3.isdigit():
                                 return False
 
                         entry["color"] = field_5
@@ -89,15 +96,11 @@ class Database:
 			# does not match any of the 3 formats
 			return False
 
-		print self.sortbyKeys(entry)
-		return self.sortbyKeys(entry)
+		return entry
 
 	def sortbyKeys(self, dict):
 
-		sortedD = {}
-		
-		for key in sorted(dict):
-			sortedD[key] = dict[key]
+		sortedD = sorted(dict.items(), key=lambda x: x[0])	
 
 		return sortedD
 		pass

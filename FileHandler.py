@@ -20,11 +20,13 @@ class FileHandler:
 	
 	def read_File(self):
 
+		line_no = 0
 		try:		
 			with open(self.filename) as file:
 				for line in file:
 					line = self.streamline(line)
-					self.db.validate_and_add(line)
+					self.db.validate_and_add(line, line_no)
+					line_no = line_no + 1
 		except Exception as e:
 			print e
 			sys.exit(0)
@@ -32,8 +34,11 @@ class FileHandler:
 		pass	
 
 	def jsonDump(self):
-		json_dict = {}
-                json_dict["entries"] = self.db.directory
+		json_dict= {}
+		json_dict["errors"] = self.db.errors
+
+		json_dict["entries"] = self.db.directory
+
 		try:
 	                with open(self.resultfile, 'w') as fp:
         	                json.dump(json_dict, fp, indent=2)

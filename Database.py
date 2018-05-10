@@ -5,6 +5,7 @@ from operator import itemgetter
 class Database:
 	
 	directory = []	# a list of dicts
+	errors = []
 	
 	def __init__(self):
                 pass
@@ -25,12 +26,14 @@ class Database:
 		
 		return False
 
-	def validate(self, input):
-	
+	def validate(self, input, line_no):
+
+
 		input = input.split(",")
 		
 		# should contain 5 fields
 		if len(input) <= 4 :
+			self.errors.append(line_no)
 			return False
 		
 		# 3 formats allowed	
@@ -52,6 +55,7 @@ class Database:
 			# validate for format 1, filed_2 should be a mobile number
 	
 			if len(field_5) != 5 or not field_5.isdigit():
+				self.errors.append(line_no)
                                 return False
 
 			entry["color"] = field_4
@@ -67,6 +71,7 @@ class Database:
 			# validate for format 2, filed_5 should be a mobile number
 
 			if len(field_4) != 5 or not field_4.isdigit():
+				self.errors.append(line_no)
 				return False
 
 
@@ -83,6 +88,7 @@ class Database:
 			# validate for format 3, filed_4 should be a mobile number
 
 			if len(field_3) != 5 or not field_3.isdigit():
+				self.errors.append(line_no)
                                 return False
 
                         entry["color"] = field_5
@@ -94,13 +100,18 @@ class Database:
 			pass
 		else:
 			# does not match any of the 3 formats
+			self.errors.append(line_no)
 			return False
 
+		print self.sortbyKeys(entry)
 		return entry
 
-	def sortbyKeys(self, dict):
+	def sortbyKeys(self, adict):
 
-		sortedD = sorted(dict.items(), key=lambda x: x[0])	
+		#sortedD = sorted(dict.items(), key=lambda x: x[0])	
+		keys = adict.keys(  )
+    		keys.sort(  )
+    		return [adict[key] for key in keys]
 
 		return sortedD
 		pass
@@ -109,9 +120,9 @@ class Database:
 		self.directory.append(dict_entry)
 		pass
 
-	def validate_and_add(self, input):
+	def validate_and_add(self, input, line_no):
 	
-		dict_entry = self.validate(input)	
+		dict_entry = self.validate(input, line_no)	
 		if dict_entry != False:
 			self.add_to_database(dict_entry)
 

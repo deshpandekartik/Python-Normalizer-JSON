@@ -103,18 +103,8 @@ class Database:
 			self.errors.append(line_no)
 			return False
 
-		print self.sortbyKeys(entry)
 		return entry
 
-	def sortbyKeys(self, adict):
-
-		#sortedD = sorted(dict.items(), key=lambda x: x[0])	
-		keys = adict.keys(  )
-    		keys.sort(  )
-    		return [adict[key] for key in keys]
-
-		return sortedD
-		pass
 
 	def add_to_database(self, dict_entry):
 		self.directory.append(dict_entry)

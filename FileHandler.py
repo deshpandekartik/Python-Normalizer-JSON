@@ -41,7 +41,7 @@ class FileHandler:
 
 		try:
 	                with open(self.resultfile, 'w') as fp:
-        	                json.dump(json_dict, fp, indent=2)
+        	                json.dump(json_dict, fp, indent=2, sort_keys=True)
 		except Exception as e:
                         print e
                         sys.exit(0)

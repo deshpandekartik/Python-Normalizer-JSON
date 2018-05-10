@@ -52,8 +52,9 @@ class Database:
 		##########
 		# Format 1
 		if self.validate_format(field_3) == True:
-			# validate for format 1, filed_2 should be a mobile number
+			# validate for format 1, filed_3 should be a mobile number
 	
+			# filed 5 should be zip code
 			if len(field_5) != 5 or not field_5.isdigit():
 				self.errors.append(line_no)
                                 return False
@@ -70,6 +71,7 @@ class Database:
 		elif self.validate_format(field_5) == True:
 			# validate for format 2, filed_5 should be a mobile number
 
+			# filed 4 should be zip code
 			if len(field_4) != 5 or not field_4.isdigit():
 				self.errors.append(line_no)
 				return False
@@ -87,6 +89,7 @@ class Database:
 		elif self.validate_format(field_4) == True:
 			# validate for format 3, filed_4 should be a mobile number
 
+			# filed 3 should be zip code
 			if len(field_3) != 5 or not field_3.isdigit():
 				self.errors.append(line_no)
                                 return False

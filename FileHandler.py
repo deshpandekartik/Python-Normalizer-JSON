@@ -7,10 +7,11 @@ import json
 class FileHandler:
 
 	filename = "input/data.in"	
-	resultfile = "result.json"
+	resultfile = "result.out"
 	db = Database()
 
-	def __init__(self,database_obj):
+	def __init__(self,database_obj,filename_arg):
+		self.filename = filename_arg
 		self.db = database_obj
 		pass
 

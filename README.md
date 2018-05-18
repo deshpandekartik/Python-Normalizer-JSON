@@ -8,8 +8,8 @@ python main.py input/data.in
 ```
 input/data.in is the input file given
 
-2. Liblaries used
+2. libraries used
 
 - sys		-	To exit python
 - itemgetter	-	To Sort a dictionary
-- json		- 	TO dump a json file
+- json		- 	To dump a json file
